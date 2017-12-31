@@ -2,6 +2,7 @@ package com.hs.kmc;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Hardik Senghani on 31/12/2017.
@@ -91,6 +92,14 @@ public class KMeanCluster {
     public void fit(List<Observation> input, int maxNoOfIteration) {
 
         boolean dataChanged = false;
+
+        Random random = new Random();
+        for (int i = 0; i < k; i++) {
+            int index = random.nextInt(input.size());
+            for (int j = 0; j < inputDataMembers; j++) {
+                clusters[i].data[j] = input.get(index).getDataAtIndex(j);
+            }
+        }
 
         for (int i = 0; i < maxNoOfIteration; i++) {
 
